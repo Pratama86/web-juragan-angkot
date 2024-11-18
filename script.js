@@ -50,10 +50,23 @@ var hapusPenumpang = function (namaPenumpang, penumpang) {
     }
 };
 
+var tampilkanPenumpang = function (penumpang) {
+    if (penumpang.length == 0) {
+        alert('Tidak ada penumpang di dalam angkot.');
+    } else {
+        var daftarPenumpang = penumpang
+            .map((penumpang, index) => `${index + 1}. ${penumpang || 'Kosong'}`)
+            .join('\n');
+        alert('Daftar penumpang saat ini:\n' + daftarPenumpang);
+    }
+};
+
 // Antarmuka sederhana menggunakan popup
 while (true) {
-    var action = prompt('Masukkan aksi (1.tambah/2.hapus/3.keluar):').toLowerCase();
-    if (action === '3') {
+    var action = prompt(
+        'Masukkan aksi (1.tambah/2.hapus/3.penumpang/4.keluar):'
+    ).toLowerCase();
+    if (action === '4') {
         alert('Terima kasih!');
         break;
     } else if (action === '1') {
@@ -68,8 +81,10 @@ while (true) {
         if (nama) {
             hapusPenumpang(nama, penumpang);
         } else {
-            alert('Daftar ini  tidak boleh kosong!');
+            alert('Nama tidak boleh kosong!');
         }
+    } else if (action === '3') {
+        tampilkanPenumpang(penumpang);
     } else {
         alert('Aksi tidak dikenal!');
     }
